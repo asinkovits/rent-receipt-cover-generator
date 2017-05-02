@@ -18,7 +18,7 @@ public class InvoiceTest {
 	@Test
 	public void canSetBaseData() {
 		// Given
-		String testDate = "2010.01.01";
+		String testDate = "2010.01.01.";
 		String testHeader = "Test invoice";
 		String testLandlord = "John Doe";
 		int testRentValue = 200;

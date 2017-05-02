@@ -9,7 +9,7 @@ public class GeneratorApp {
 	private Invoice invoice;
 
 	public void execute() {
-
+		
 	}
 
 	public Invoice getInvoice() {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<invoice>
+    <date>2010.01.01.</date>
+    <header>Test invoice</header>
+    <landlord>John Doe</landlord>
+    <rentValue>200</rentValue>
+    <rentValueText>Two hundred</rentValueText>
+    <sum>300</sum>
+    <tenant>Jane Doe</tenant>
+    <bill>
+        <label>test bill 1</label>
+        <value>200</value>
+    </bill>
+    <bill>
+        <label>test bill 2</label>
+        <value>100</value>
+    </bill>
+</invoice>

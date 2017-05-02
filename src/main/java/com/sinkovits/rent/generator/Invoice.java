@@ -3,6 +3,10 @@ package com.sinkovits.rent.generator;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "invoice")
 public class Invoice {
 
 	private String header;
@@ -13,6 +17,7 @@ public class Invoice {
 	private String tenant;
 	private List<Bill> bills = new ArrayList<>();
 
+	@XmlElement
 	public String getHeader() {
 		return header;
 	}
@@ -21,6 +26,7 @@ public class Invoice {
 		this.header = header;
 	}
 
+	@XmlElement
 	public String getDate() {
 		return date;
 	}
@@ -29,6 +35,7 @@ public class Invoice {
 		this.date = date;
 	}
 
+	@XmlElement
 	public String getLandlord() {
 		return landlord;
 	}
@@ -37,6 +44,7 @@ public class Invoice {
 		this.landlord = landlord;
 	}
 
+	@XmlElement
 	public int getRentValue() {
 		return rentValue;
 	}
@@ -45,6 +53,7 @@ public class Invoice {
 		this.rentValue = rentValue;
 	}
 
+	@XmlElement
 	public String getRentValueText() {
 		return rentValueText;
 	}
@@ -53,6 +62,7 @@ public class Invoice {
 		this.rentValueText = rentValueText;
 	}
 
+	@XmlElement
 	public String getTenant() {
 		return tenant;
 	}
@@ -67,5 +77,10 @@ public class Invoice {
 
 	public Bill getBill(int index) {
 		return bills.get(index);
+	}
+
+	@XmlElement(name = "bill")
+	public List<Bill> getBills() {
+		return bills;
 	}
 }
