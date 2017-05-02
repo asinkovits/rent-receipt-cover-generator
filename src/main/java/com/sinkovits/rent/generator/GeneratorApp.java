@@ -1,5 +1,8 @@
 package com.sinkovits.rent.generator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GeneratorApp {
 
 	public static void main(String[] args) {
@@ -12,9 +15,10 @@ public class GeneratorApp {
 	private int rentValue;
 	private String rentValueText;
 	private String tenant;
+	private List<Bill> bills = new ArrayList<>();
 
 	public void execute() {
-
+		
 	}
 
 	public String getHeader() {
@@ -63,6 +67,14 @@ public class GeneratorApp {
 
 	public void setTenant(String tenant) {
 		this.tenant = tenant;
+	}
+
+	public void addBill(Bill testBill) {
+		bills.add(testBill);
+	}
+
+	public Bill getBill(int index) {
+		return bills.get(index);
 	}
 
 }

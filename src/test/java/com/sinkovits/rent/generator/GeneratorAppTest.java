@@ -47,4 +47,31 @@ public class GeneratorAppTest {
 		assertThat(app.getTenant(), equalTo(testTenant));
 	}
 
+	@Test
+	public void canSetBillData() {
+		// Given
+		Bill testBill = new Bill();
+		
+		// When
+		app.addBill(testBill);
+		
+		// Then
+		assertThat(app.getBill(0), equalTo(testBill));
+		
+	}
+
+	@Test
+	public void canSetMultipleBillData() {
+		// Given
+		Bill testBill1 = new Bill();
+		Bill testBill2 = new Bill();
+		
+		// When
+		app.addBill(testBill1);
+		app.addBill(testBill2);
+		
+		// Then
+		assertThat(app.getBill(0), equalTo(testBill1));
+		assertThat(app.getBill(1), equalTo(testBill2));
+	}
 }
