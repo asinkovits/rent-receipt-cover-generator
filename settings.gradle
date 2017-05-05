@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'rent-receipt-generator2'
+rootProject.name = 'rent-receipt-cover-generator'
