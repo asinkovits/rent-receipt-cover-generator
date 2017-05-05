@@ -94,9 +94,9 @@
   </xsl:template>
   <xsl:template match="bill">
     <fo:block space-before="2pt">
-      <xsl:value-of select="name" />
+      <xsl:value-of select="label" />
       <fo:leader leader-pattern="space" />
-      <xsl:value-of select="price" />
+      <xsl:value-of select="value" />
       Ft
     </fo:block>
   </xsl:template>
