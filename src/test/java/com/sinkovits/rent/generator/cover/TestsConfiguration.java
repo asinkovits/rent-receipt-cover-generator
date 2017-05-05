@@ -1,4 +1,4 @@
-package com.sinkovits.rent.generator;
+package com.sinkovits.rent.generator.cover;
 
 import java.io.IOException;
 import java.net.URI;
@@ -7,22 +7,21 @@ import java.net.URISyntaxException;
 import javax.xml.transform.TransformerFactory;
 
 import org.apache.fop.apps.FopFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.xml.sax.SAXException;
 
-@Configuration
 public class TestsConfiguration {
 
-	@Autowired
-	private ResourceLoader resourceLoader;
-	
 	@Bean
-	public PdfGenerator genertaor(){
-		return new PdfGenerator();
+	public PdfGenerator genertaor(FopFactory fopFactory, TransformerFactory transformerFactory, ResourceLoader resourceLoader){
+		PdfGenerator gen = new PdfGenerator();
+		gen.setTemplateFile("classpath:invoice2fo.xsl");
+		gen.setFopFactory(fopFactory);
+		gen.setTransformerFactory(transformerFactory);
+		gen.setResourceLoader(resourceLoader);
+		return gen;
 	}
 
 	@Bean
@@ -31,7 +30,7 @@ public class TestsConfiguration {
 	}
 	
 	@Bean
-	public FopFactory fopFactory() throws SAXException, IOException, URISyntaxException {
+	public FopFactory fopFactory(ResourceLoader resourceLoader) throws SAXException, IOException, URISyntaxException {
 		Resource fopConfigResource = resourceLoader.getResource(PdfGenerator.FOP_XCONF);
 		return FopFactory.newInstance(new URI("."), fopConfigResource.getInputStream());
 	}

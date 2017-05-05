@@ -1,4 +1,4 @@
-package com.sinkovits.rent.generator;
+package com.sinkovits.rent.generator.cover;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -20,21 +20,24 @@ import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import static org.springframework.util.Assert.notNull;
 
 public class PdfGenerator {
 
 	public static final String FOP_XCONF = "classpath:fop.xconf";
-	public static final String TEMPLATE = "classpath:invoice2fo.xsl";
 
 	private TransformerFactory transformerFactory;
 	private FopFactory fopFactory;
 	private ResourceLoader resourceLoader;
+	private String templateFile;
 
 	public void generate(Path input, Path output) {
-		Resource template = resourceLoader.getResource(TEMPLATE);
+		notNull(templateFile, "Template file is not set!");
+		notNull(input, "Input path is not set!");
+		notNull(output, "Output path is not set!");
+		Resource template = resourceLoader.getResource(this.templateFile);
 		try (BufferedReader in = Files.newBufferedReader(input);
 				OutputStream out = new BufferedOutputStream(Files.newOutputStream(output));
 				InputStream templateInputStream = template.getInputStream()) {
@@ -48,19 +51,19 @@ public class PdfGenerator {
 		}
 	}
 
-	@Autowired
 	public void setTransformerFactory(TransformerFactory transformerFactory) {
 		this.transformerFactory = transformerFactory;
 	}
 
-	@Autowired
 	public void setFopFactory(FopFactory fopFactory) {
 		this.fopFactory = fopFactory;
 	}
 
-	@Autowired
 	public void setResourceLoader(ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
 	}
 
+	public void setTemplateFile(String templateFile) {
+		this.templateFile = templateFile;
+	}
 }

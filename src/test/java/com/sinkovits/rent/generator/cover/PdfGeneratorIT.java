@@ -1,4 +1,4 @@
-package com.sinkovits.rent.generator;
+package com.sinkovits.rent.generator.cover;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.fop.apps.MimeConstants;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,12 +19,12 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Import(TestsConfiguration.class)
+@ContextConfiguration(classes = { TestsConfiguration.class })
 public class PdfGeneratorIT {
 
 	@Autowired
@@ -45,12 +46,12 @@ public class PdfGeneratorIT {
 	public void exampleTest() throws IOException {
 		// When
 		generator.generate(testInput, testOutput);
-		
+
 		// Then
 		File file = testOutput.toFile();
 		assertTrue(file.exists());
 		assertTrue(file.isFile());
 		assertThat(file.length(), greaterThan(0L));
-		assertThat(Files.probeContentType(testOutput), equalTo("application/pdf"));
+		assertThat(Files.probeContentType(testOutput), equalTo(MimeConstants.MIME_PDF));
 	}
 }

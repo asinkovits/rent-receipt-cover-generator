@@ -1,4 +1,4 @@
-package com.sinkovits.rent.generator;
+package com.sinkovits.rent.generator.cover;
 
 import java.io.File;
 
