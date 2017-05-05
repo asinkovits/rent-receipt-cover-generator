@@ -32,6 +32,7 @@ public class CoverGeneratorApp implements CommandLineRunner {
 		Resource fopConfigResource = resourceLoader.getResource(PdfGenerator.FOP_XCONF);
 		generator.setFopFactory(FopFactory.newInstance(new URI("."), fopConfigResource.getInputStream()));
 		generator.setTransformerFactory(TransformerFactory.newInstance());
+		generator.setResourceLoader(resourceLoader);
 		return generator;
 	}
 

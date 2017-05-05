@@ -37,7 +37,7 @@ public class PdfGenerator {
 		notNull(templateFile, "Template file is not set!");
 		notNull(input, "Input path is not set!");
 		notNull(output, "Output path is not set!");
-		Resource template = resourceLoader.getResource(this.templateFile);
+		Resource template = resourceLoader.getResource(templateFile);
 		try (BufferedReader in = Files.newBufferedReader(input);
 				OutputStream out = new BufferedOutputStream(Files.newOutputStream(output));
 				InputStream templateInputStream = template.getInputStream()) {
